@@ -1,6 +1,6 @@
 ## Machine Learning
 
-This repository serves as my personal notes, implementations, and explorations of various machine learning concepts.
+This repository serves as my personal [notes](lecture-notes.md), implementations, and explorations of various machine learning concepts.
 
 ### Lecture Series
 Participated in the [deep learning lecture series](http://www.boltzmann-institute.com/) offered by Neg Ruggeri/the Boltzmann Institute from October - December 2017.
@@ -12,9 +12,9 @@ Topics:
 4. Convolutional Neural Networks (image recognition).
 5. Recurrent Neural Networks (natural language processing).
 6. Long Short Term Memory (LSTM) cells. Word embeddings (word2vec).
-7. Sequence to Sequence tasks. 8. Encoder/Decoder architecture. Machine translation.
+7. Sequence to Sequence tasks. Encoder/Decoder architecture. Machine translation.
 8. Autoencoders. Unsupervised representation learning.
-9. Generative Adversarial Networks (image and music synthesis)
+9. Generative Adversarial Networks (image and music synthesis).
 
 ### Neural Network Implementations
 
