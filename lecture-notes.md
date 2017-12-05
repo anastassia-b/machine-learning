@@ -5,13 +5,15 @@
 1. [Feed Forward Neural Networks](#feed-forward-neural-networks)
 1. [Convolutional Neural Networks](#convolutional-neural-networks)
 1. [Recurrent Neural Networks](#recurrent-neural-networks)
-1. [Encoder Decoder Architecture](#encoder-decoder-architecture)
+1. [Representational Learning](#representational-learning)
 1. [Autoencoders and Generative Adversarial Networks](#autoencoders-and-generative-adversarial-networks)
 
-#### Linear and Logistic Regression
+### Linear and Logistic Regression
 _November 9, 2017_
 
-Naive bayes can be wrong in so far as its assumptions are wrong.
+**Naive Bayes**
+
+Naive Bayes can be wrong in so far as its assumptions are wrong.
 So thats how we can pick better phi values which are doing for the likelihood equation.
 
 So we can square each of the two conditionally dependent words, or make one 1.0…
@@ -20,8 +22,7 @@ No absence phis anymore.
 Base odds plus all of the absence features.
 Now when a word is presence. We’ll put in the presence ratio, and we’ll kill the absence feature. They’ve been folded into phi0.
 
-Phi is odds.
-Let’s just assume everything is absent. Then, when we do see a word, we’ll cancel it out.
+Phi is odds. Let’s just assume everything is absent. Then, when we do see a word, we’ll cancel it out.
 
 Phi0 is the original odds that an email is spam.
 phi’ is the feature probability ratio. The ratio that a spam email would have the word over the probability that a non-spam email would have the word.
@@ -29,31 +30,26 @@ phi’ is the feature probability ratio. The ratio that a spam email would have 
 All the words, of which there are m of them.
 From the odds we can derive the probability equations.
 
-ODDS RATIO in logistic regression.
+**Maximizing the likelihood**
 
-Maximizing the likelihood. Now with less stuff.
+ODDS RATIO in logistic regression. Now with less stuff. Maximizing log likelihood: The rule of log is that it turns products into sums. A lot of the multiplying has become adding.
 
-Maximizing log likelihood. The rule of log is that it turns products into sums.
-A lot of the multiplying has become adding.
+Gradient descent. Incremental change in the phi value could even fluctuate a lot. Theres no definition of small anymore. Then your step could actually be huge. So thats a problem. Because gradient descent wouldn’t be making the small steps that it needs to. So we want to get rid of the products. So we will reparameterize the equations!!! We take the log of the phis to get thetas.
 
-Gradient descent. Incremental change in the phi value could even fluctuate a lot. Theres no definition of small anymore. Then your step could actually be huge. So thats a problem. Because gradient descent wouldn’t be making the small steps that it needs to. So we want to get rid of the products. So we will reparameterize the equations!!!
-We take the log of the phis to get thetas.
-
-Exponentiate and log are the opposites. Adding a lot of thetas together and just exponentiate.
-Much better, since its just addition. So its still accurate!
+Exponentiate and log are the opposites. Adding a lot of thetas together and just exponentiate. Much better, since its just addition. So its still accurate!
 
 Logistic function. Sigmoid function.
-The reparamizerixed likelihood function!!!!
-This error function is called the cross entropy error. Minimizing the cross entropy error is equivalent to maximizing the likelihood.
-Let’s find the best thetas!!!
+The reparameterized likelihood function!!!!
+This error function is called the **cross entropy error**. Minimizing the cross entropy error is equivalent to maximizing the likelihood.
+Let’s find the best thetas!
 Maximizing this is actually minimizing the error of it.
 -log probability!!! Is the error function. This is related to entropy!!!
 
-Probability of the dataset_ probablility that the model picks the spammiest email from the dataset.
+Probability of the dataset: probability that the model picks the spammiest email from the dataset.
 
 Why this sigmoid model??? There is a logic to this thing. It’s related to the RIGHT MODEL under a certain assumption. This also suggests why this model could be better than naive bayes. This model is still LINEAR. Just cause I’m free to choose the thetas…
 
-Is this a generalization of naive babes without assumptions? yes.. but…
+Is this a generalization of naive bayes without assumptions? yes.. but…
 The naive bayes is a GENERATIVE MODEL. It allows me to answer any kind of probability query.
 These thetas are chosen FOR THE SINGLE TASK OF GIVEN THESE WORDS THAT THE EMAIL IS SPAM?
 One thing that the naive bayes model is..
@@ -63,8 +59,10 @@ The discriminative one where if they go to a website in incognito mode.. we’re
 For medical diagnosis… other tests that you didn’t run are not equivalent to running tests and getting negative.
 GENERATIVE MODELS are in the medical domain, while discriminative models are used in a lot of other domains.
 
-#### Gradient Descent
+### Gradient Descent
 _November 14, 2017_
+
+**Boolean Circuits**
 
  Neural networks are networks of logistic regression models feeding into each other.
 Boolean variables take binary variables and output binary variables. (Like And and Or).
@@ -93,7 +91,7 @@ How to change? Logical gates can be approximates by logistic regression models!
 Thetas are implicitly explaining how to wire things.
 
 We want to do 2 things with a neural network:
-1. inference. Forward propagation.
+1. Inference. Forward propagation.
 2. How to set the the theta values. Back propagation.
 
 Z values are pre-activations.
@@ -104,8 +102,8 @@ It’s pretty low level. You have to tell it that you give it the matrix of M by
 
 There’s an easier, higher concept version called Keras.
 
-#### Feed Forward Neural Networks
-##### multilayer perceptrons and backpropagation
+### Feed Forward Neural Networks
+#### multilayer perceptrons and backpropagation
 _November 15, 2017_
 
 Machine learning individual has intuition for the type of model.
@@ -123,7 +121,7 @@ Sigmoid is more similar to digital logic gate.
 Sigmoid gives a value of zero to 1.
 Alternative Hyperbolic Function (from -1 to 1) when we get to long short term memory.
 
-Any Boolean function can be represented by a single layer of many inputs. Because it’s like a lot of Ands and an OR
+Any Boolean function can be represented by a single layer of many inputs. Because it’s like a lot of Ands and an OR.
 
 50-100 convolutional neural layers for distinguishing tons of types of things.
 Just between cats and dogs could be 1 hidden layer with like 512 input variables.
@@ -138,7 +136,7 @@ Gradient descent.
 
 We can’t change z3 directly, but we can change the b’s and the thetas (or a’s?).
 
-#### Convolutional Neural Networks
+### Convolutional Neural Networks
 _November 16, 2017_
 
 Convolutional Neural networks for images.
@@ -162,6 +160,8 @@ We want the network to learn the concept of horizontal lines regardless of its l
 But it's hard to learn that if the network doesn't understand that various horizontal lines.. like 100 sunrises, and you ask on the next day what will happen, I don't know it's a totally different day.
 But want it to make that connection. To extract a general commonality that is useful.
 
+**Filters**
+
 Filter dimension: receptive field of a filter.
 We intuit: Number of filters and filter dimensions!
 
@@ -178,12 +178,12 @@ Change 0-255 into canonical range of 0 to 1. This really improved the classifica
 
 Next up will be: Recurrent neural network that read continuous data. Like text or sound.
 
-#### Recurrent Neural Networks
+### Recurrent Neural Networks
 _November 28, 2017_
 
 RNNs are for **natural language processing**.
 
-Now, we will learn about recurrent neural networks. recurrent tasks like series of words or letters.
+Now, we will learn about recurrent neural networks. For recurrent tasks like series of words or letters.
 
 **Markov Models**
 
@@ -194,7 +194,7 @@ The graphical.
 Two problems.
 
 1. This doesn’t represent the way sentences are really formed.
-2. High dimensionally of the vocabulary.  So the model will not think that some words will never follow other words.
+2. High dimensionality of the vocabulary.  So the model will not think that some words will never follow other words.
 
 **Hidden Markov Models**
 
@@ -211,12 +211,12 @@ How do we learn this if an essential part is unknown to us (the hidden states)?
 
 **Recurrent Neural Networks**
 
-Just like with neural networks, we can begin with random Initial state probabilities, random transition probabilities, and random Emission probabilities (as long as the rows sum to 1).
+Just like with neural networks, we can begin with random initial state probabilities, random transition probabilities, and random Emission probabilities (as long as the rows sum to 1).
 
 Prediction, Smoothing. There are 2 things that could tell us information, is the state before and the state after.
-How to figure out smoothing? Expectation Maximization.
+How to figure out smoothing? **Expectation Maximization.**
 
-So we it up. We can calculate the state probabilities.
+So we (total) it up. We can calculate the state probabilities.
 
 We want to pick the model that makes the past the most likely out of unlikely events.
 Will this reach equilibrium? It will reach some non-improving state.
@@ -252,17 +252,17 @@ This is effectively a hidden markov model with a hidden state space. This just a
 It's the same dimensionality for the transition matrix. So the transition is a function, in mixing the states.
 It s a weight matrix now, multiply the vector.
 
-The most common activation function is Relo. But softmax has meaning. Its the logistic function, probabilities that sum out to 1. The state will be chosen from that probability distribution.
+The most common activation function is Relu. But softmax has meaning. Its the logistic function, probabilities that sum out to 1. The state will be chosen from that probability distribution.
 
 Different ways of training models.
 1. Closed form solution.
 2. Gradient descent.
 3. Expectation maximization.
 4. genetic algorithms. kills off or share parts of code.
-  - but hard to determine how to share code that doesnt destroy it completely.
+  - but hard to determine how to share code that doesn't destroy it completely.
 
-#### Encoder Decoder Architecture
-##### Topics: LSTM, Word embeddings (word2vec), Sequence to Sequence tasks, Machine translation.
+### Representational Learning
+#### Topics: LSTM, Word embeddings (word2vec), Sequence to Sequence tasks, Encoder/Decoder Architecture, Machine translation.
 _November 29, 2017_
 
 Recap and correction from yesterday--
@@ -335,7 +335,9 @@ Even if we change the weight matrix in the beginning, we can't predict, its so s
 
 For LSTM, we'll still have inputs in each time, but instead of a layer of nodes that is the function of the state, we're going to have a more sophisticated cell, which we still feedforward. These cells are components, aggregates, they have a structure. We have the prior state, which comes into the cell, combined with the new input (concatenated), comes up with a new state. Normally if we fed this forward, that'd be a normal RNN. But we're also going to calculate a 256 dimension ~~sigmoid~~ tanh. New state is a delta of the prior state.
 
-There's a path by which a change in the beginning could have a fast/clear route to send signal all the way down. It's not corrupted by intermediate information. It's typical to use Relu (0 - +). But it's also a bit problematic since the state can only grow and grow. Weird. So we also use tanh. Which is like a sigmoid, from -1 to 1. Like a volume nob, an operation.
+There's a path by which a change in the beginning could have a fast/clear route to send signal all the way down. It's not corrupted by intermediate information. It's typical to use Relu (0 - +). But it's also a bit problematic since the state can only grow and grow. Weird. So we also use tanh. Which is like a sigmoid, except from -1 to 1. Like a volume nob, an operation.
+
+**Machine Translation**
 
 Different kinds of networks.
 Prediction at every time step, another prediction after a couple steps, but what about translation?
@@ -346,11 +348,12 @@ So we'll get a state at the end. Which we'll feed into an RNN, which will genera
 
 Question/Answer problems with memory and attention. Like outputting notes from each chapter instead of one "book" state at the end. And then getting a question state and feeding in the notes, to get a final answer.
 
-#### Autoencoders and Generative Adversarial Networks
-##### Unsupervised representation learning
+### Autoencoders and Generative Adversarial Networks
+#### Unsupervised representation learning
 _November 30, 2017_
 
-Representation Learning.
+**Representation Learning**
+
 The space is scrambled up, but we'd like a linear regression model with Cat photos on one side and not on the other.
 The euclidean distance. You can do 30 x 30 image with a 900 dimensional vector. Images that contain cats are not going to fall...
 The original representation doesn't help us. So we want to transform the data points... find new representations maybe different number of dimensions. But we can change the meaning of the space.
@@ -360,7 +363,7 @@ In a sense all of deep learning is to learn about representations. Why do we pre
 We prefer a representation if it sets us up to do a good job. Training signal of yes cat or no cat. This is going to drive the re-featurization process.
 
 If we're looking for images of cats online... they are probably mostly unlabeled. We'd like to be able to use the photos which are unlabeled.
-How can use use the (large) unlabeled and (small) labeled data to make a representation. This is semi-supervised learning with autoencoders. This is an important historical technique because it was the first way we trained deep networks.
+How can use use the (large) unlabeled and (small) labeled data to make a representation. This is **semi-supervised learning with autoencoders**. This is an important historical technique because it was the first way we trained deep networks.
 
 The idea is we have an input. We don't have a training signal. We might want to map it to a representation. And the output that we want is the input again. In a sense, we're encoding something so that later we can decode it and get ourself back again. This is like MP3 compression. So autoencoders are going to learn to encode and decode.
 
@@ -370,13 +373,13 @@ Unsupervised pre-training of a neural network. Instead of starting the weights r
 
 **Several types of Autoencoders**
 
-* **Undercomplete**. Make the representation smaller (like word2vec embedding). Advantages include: representation is smaller, so you have a smaller inputs, so thats a significant reduction in reduction of weights. Good for memory usage and compute time, also helps not overfitting and learning values. Another advantage is it is a representation that plays nice with linear functions. E, D are linear transformations. It must have found a representation where applying a linear function restores semantic values. It couldn't have stored the data in a way that a linear function can't understand. Thats what we want in the end, linear separability of the classes. Therefore, similar images are likely to be closer together. Greedy layer unsupervised pre-training.
+* **Undercomplete**. Make the representation smaller (like word2vec embedding). Advantages include: representation is smaller, so you have a smaller inputs, so thats a significant reduction in reduction of weights. Good for memory usage and computation time, also helps not overfitting and learning values. Another advantage is it is a representation that plays nice with linear functions. E, D are linear transformations. It must have found a representation where applying a linear function restores semantic values. It couldn't have stored the data in a way that a linear function can't understand. Thats what we want in the end, linear separability of the classes. Therefore, similar images are likely to be closer together. Greedy layer unsupervised pre-training.
   * Question. Well, D2 is not just the inverse of E2. But that's too simple (there's a relu). Talk about PCA. We want to store a 2 dim dataset with 1 dim. The line is like the decoding function. The 'l' value is the encoding (how far away the point is from the line). If E and D are linear functions, its like PCA for each step. To make things more sophisticated, we often use a non-linear activation function. In this way we can use non-linear relationships (with a relu function or a deep autoencoder with more hidden layers). Manifold is the curvy plane/line that is analogous to the PCA line. The autoencoder, when projecting onto the manifold, will have a low reconstruction error. We'll still use a length to figure out where on the manifold you are.
-  * This would be like 10 lines of keras code, super easy. There is a dataset called Mnist. It's the digits. We want to keep 10% of the data with labels, and ignore the remaining 90%. Train an autoencoder with 90% and train a neural network with the remaining 10%.
+  * This would be like 10 lines of keras code, super easy. There is a dataset called MNIST. It's the digits. We want to keep 10% of the data with labels, and ignore the remaining 90%. Train an autoencoder with 90% and train a neural network with the remaining 10%.
 
   -> Tangent: Transfer learning. Train network to find cats. Then change the last classification layer to find cats. Actually does a pretty good job. Groups like google and microsoft publish the weights.
 
-* What if I have an enocoding that is just as big? Cool, I'll just apply the identity function. What if instead of reducing the dimensionality, I use a **regularization penalty**? For example, for using non-zero values. It's almost in a sense.. **This is a sparse autoencoder**. You can consider it a variable length encoding. With this way, you don't force everyone to have the same dimensionality. So you can say, you can use however many words you need to describe this image.
+* What if I have an encoding that is just as big? Cool, I'll just apply the identity function. What if instead of reducing the dimensionality, I use a **regularization penalty**? For example, for using non-zero values. It's almost in a sense.. **This is a sparse autoencoder**. You can consider it a variable length encoding. With this way, you don't force everyone to have the same dimensionality. So you can say, you can use however many words you need to describe this image.
 
 * **Denoising autoencoder**. Put in a corrupted image (with gaussian noise). There's a matrix for convolution, for sharpening images.
 
@@ -388,9 +391,13 @@ Another way to find representations and a lot of other cool stuff. We've gotta h
 
 Forget about internal representation. Let's talk image synthesis.
 Generator is trying to generate fake images and the Discriminator is trying to detect fake images.
-We will train the discriminator with the output of the generator. You can train these together.
+
+_We will train the discriminator with the output of the generator. You can train these together._
+
 If your text was "old man crossing the street"... to just use L2 to test generator would be problematic, since a thousand different ways to represent this text in a photo. The L2 loss doesn't respect the idea that two images could be totally different but be about the same thing. Ears are visually salient to us, but L2 loss tend to blur out the ears.
 
-In a sense the discriminator is learning a loss function for the generator. Where are we going to get a better distance metric from? What do we think are semantically meaningful, to inject our knowledge? This has flipped it around. Actually, I'll just pose a simple adversarial function between these two things. Theres no loss function at all. Theres only cross entropy, and you'll figure out the loss function yourself. The generator will try its best with the loss function you learn.
+_In a sense the discriminator is learning a loss function for the generator._
 
-GANs favor answers which are really sharp. As opposed to L2 loss. I have to give a sharp answer. It's more all or nothing. It's good for super resolution. You can also use GANs as a feature extractor. The advantage is not that the features are used to reconstruct a blurry image, but that there are more semantic meanings to the representation than an autoencoder. It has a sharper distinction, different criteria for representation. On the other hand, it could lose a lot of information if its mistakes that the generator makes...
+Where are we going to get a better distance metric from? What do we think are semantically meaningful, to inject our knowledge? This has flipped it around. Actually, I'll just pose a simple adversarial function between these two things. Theres no loss function at all. Theres only cross entropy, and you'll figure out the loss function yourself. The generator will try its best with the loss function you learn.
+
+GANs favor answers which are really sharp. As opposed to L2 loss. I have to give a sharp answer. It's more all or nothing. It's good for super resolution. You can also use GANs as a feature extractor. The advantage is not that the features are used to reconstruct a blurry image, but that there are more semantic meanings to the representation than an autoencoder. It has a sharper distinction, different criteria for representation. On the other hand, it could lose a lot of information depending on the mistakes of the generator...
