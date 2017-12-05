@@ -1,6 +1,15 @@
-## Notes
+## Lecture Notes
 
-### November 9, 2017
+1. [Linear and Logistic Regression](#linear-and-logistic-regression)
+1. [Gradient Descent](#gradient-descent)
+1. [Feed Forward Neural Networks](#feed-forward-neural-networks)
+1. [Convolutional Neural Networks](#convolutional-neural-networks)
+1. [Recurrent Neural Networks](#recurrent-neural-networks)
+1. [Encoder Decoder Architecture](#encoder-decoder-architecture)
+1. [Autoencoders and Generative Adversarial Networks](#autoencoders-and-generative-adversarial-networks)
+
+#### Linear and Logistic Regression
+_November 9, 2017_
 
 Naive bayes can be wrong in so far as its assumptions are wrong.
 So thats how we can pick better phi values which are doing for the likelihood equation.
@@ -54,7 +63,8 @@ The discriminative one where if they go to a website in incognito mode.. we’re
 For medical diagnosis… other tests that you didn’t run are not equivalent to running tests and getting negative.
 GENERATIVE MODELS are in the medical domain, while discriminative models are used in a lot of other domains.
 
-### November 14, 2017
+#### Gradient Descent
+_November 14, 2017_
 
  Neural networks are networks of logistic regression models feeding into each other.
 Boolean variables take binary variables and output binary variables. (Like And and Or).
@@ -74,7 +84,7 @@ Thats O(N^2) more features. Most will be totally useless.
 Every feature that we add adds capacity to the model, but that’s bad since it’ll be too specific.
 So with limited data, it’s bad. The weights will be too specific, it’ll memorize.
 
-The goodness of a network/circut is how often it misclassifies (error).
+The goodness of a network/circuit is how often it misclassifies (error).
 But making one change at a time is inefficient for 2 reasons. Using gradient descent would be good.
 1. All of our choices are discreet. (But in a logistic regression model, we can change the theta a little bit). The wiring choices are discreet too.
 2. Derivatives of zero.
@@ -94,7 +104,9 @@ It’s pretty low level. You have to tell it that you give it the matrix of M by
 
 There’s an easier, higher concept version called Keras.
 
-### November 15, 2017
+#### Feed Forward Neural Networks
+##### multilayer perceptrons and backpropagation
+_November 15, 2017_
 
 Machine learning individual has intuition for the type of model.
 Each layer goes down in powers of 2 or 10.
@@ -126,8 +138,8 @@ Gradient descent.
 
 We can’t change z3 directly, but we can change the b’s and the thetas (or a’s?).
 
-
-### November 16, 2017
+#### Convolutional Neural Networks
+_November 16, 2017_
 
 Convolutional Neural networks for images.
 x_tensor: (60,000, 28, 28). Images are 28 by 28pixels.
@@ -166,8 +178,10 @@ Change 0-255 into canonical range of 0 to 1. This really improved the classifica
 
 Next up will be: Recurrent neural network that read continuous data. Like text or sound.
 
+#### Recurrent Neural Networks
+_November 28, 2017_
 
-### November 28, 2017
+RNNs are for **natural language processing**.
 
 Now, we will learn about recurrent neural networks. recurrent tasks like series of words or letters.
 
@@ -247,7 +261,9 @@ Different ways of training models.
 4. genetic algorithms. kills off or share parts of code.
   - but hard to determine how to share code that doesnt destroy it completely.
 
-### November 29, 2017
+#### Encoder Decoder Architecture
+##### Topics: LSTM, Word embeddings (word2vec), Sequence to Sequence tasks, Machine translation.
+_November 29, 2017_
 
 Recap and correction from yesterday--
 We were trying to use sequence models to:
@@ -330,8 +346,9 @@ So we'll get a state at the end. Which we'll feed into an RNN, which will genera
 
 Question/Answer problems with memory and attention. Like outputting notes from each chapter instead of one "book" state at the end. And then getting a question state and feeding in the notes, to get a final answer.
 
-
-### November 30, 2017: Autoencoders and GANs
+#### Autoencoders and Generative Adversarial Networks
+##### Unsupervised representation learning
+_November 30, 2017_
 
 Representation Learning.
 The space is scrambled up, but we'd like a linear regression model with Cat photos on one side and not on the other.
