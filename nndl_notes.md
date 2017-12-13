@@ -72,3 +72,30 @@ Elementwise multiplication is sometimes called the Hadamard product (or Schur pr
 3. Output error
 4. Backpropagate the error
 5. Output
+
+### Chapter 3: Improving the way neural networks learn
+
+To improve our vanilla implementation of backpropogation:
+* better choice of cost function (cross entropy cost function)
+* four "regularization" methods:
+  * L1 regularization
+  * L2 regularization
+  * dropout
+  * artificial expansion of the training data
+* better method for initializing weights in the network
+* set of heuristics for choosing good hyper parameters
+
+
+#### The cross-entropy cost function
+
+Learning is slow when the network is really wrong - this behaviour is strange when contrasted to human learning. We often learn fastest when we're badly wrong about something. But we've just seen that our artificial neuron has a lot of difficulty learning when it's badly wrong - far more difficulty than when it's just a little wrong.
+
+It turns out that we can solve the problem by replacing the quadratic cost with a different cost function, known as the cross-entropy.
+
+The cross-entropy is positive, and tends toward zero as the neuron gets better at computing the desired output, y, for all training inputs, x. These are both properties we'd intuitively expect for a cost function.
+
+Additionally, the larger the error, the faster the neuron will learn (the rate at which the weight is learned).
+
+"By now, we've discussed the cross-entropy at great length. Why go to so much effort when it gives only a small improvement to our MNIST results? Later in the chapter we'll see other techniques - notably, regularization - which give much bigger improvements. So why so much focus on cross-entropy? Part of the reason is that the cross-entropy is a widely-used cost function, and so is worth understanding well. But the more important reason is that _neuron saturation_ is an important problem in neural nets, a problem we'll return to repeatedly throughout the book. And so I've discussed the cross-entropy at length because it's a good laboratory to begin understanding neuron saturation and how it may be addressed."
+
+There is a standard way of interpreting the cross-entropy that comes from the field of information theory. Roughly speaking, the idea is that the cross-entropy is a measure of surprise. Then the cross-entropy measures how "surprised" we are, on average, when we learn the true value for y. We get low surprise if the output is what we expect, and high surprise if the output is unexpected.
