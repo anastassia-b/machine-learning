@@ -53,3 +53,22 @@ To compare our performance, let's try using one of the best known algorithms, th
 #### Toward Deep Learning
 
 The end result is a network which breaks down a very complicated question - does this image show a face or not - into very simple questions answerable at the level of single pixels. It does this through a series of many layers, with early layers answering very simple and specific questions about the input image, and later layers building up a hierarchy of ever more complex and abstract concepts. Networks with this kind of many-layer structure - two or more hidden layers - are called deep neural networks.
+
+
+### Chapter 2: How the backpropagation algorithm works
+
+This expression gives us a much more global way of thinking about how the activations in one layer relate to activations in the previous layer: we just apply the weight matrix to the activations, then add the bias vector, and finally apply the σ function.
+When using this equation, we compute the intermediate quantity z along the way-- there is a benefit to naming and storing it: _weighted input_ to the neurons in layer l.
+
+For backpropagation to work we need to make two main assumptions about the form of the cost function. The first is that the cost function can be written as an average over cost functions for individual training examples. The second is that it can be written as a function of the outputs from the neural network.
+
+Thus is a function of the output activations. Of course, this cost function also depends on the desired output y, and you may wonder why we're not regarding the cost also as a function of y. Remember, though, that the input training example x is fixed, and so the output y is also a fixed parameter. In particular, it's not something we can modify by changing the weights and biases in any way, i.e., it's not something which the neural network learns. And so it makes sense to regard C as a function of the output activations aL alone, with y merely a parameter that helps define that function.
+
+Elementwise multiplication is sometimes called the Hadamard product (or Schur product). Good matrix libraries usually provide fast implementations of the Hadamard product, and that comes in handy when implementing backpropagation.
+
+**The backpropagation algorithm**
+1. Input
+2. Feedforward
+3. Output error
+4. Backpropagate the error
+5. Output
