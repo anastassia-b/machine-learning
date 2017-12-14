@@ -17,17 +17,22 @@ y_test = to_categorical(y_test, num_classes=10)
 
 x = tf.placeholder(tf.float32, [None, 32, 32, 3])
 
+# Instead of dividing the weights variable, divide the initialization
+# (e.g., pass in a scale parameter to weight_variable).
+# That seems to fix things. Not sure what tensorflow is doing.
+# I get 34% accuracy with the one convolution layer that way.
 
-def weight_variable(shape):
+
+def weight_variable(shape, scale):
     #changed stddev from 0.1 to 1.0
-  initial = tf.truncated_normal(shape, stddev=1.0)
+  initial = (tf.truncated_normal(shape, stddev=1.0)) / scale
   return tf.Variable(initial)
 
 def bias_variable(shape):
   initial = tf.constant(0.1, shape=shape)
   return tf.Variable(initial)
 
-W_conv1 = (weight_variable([3, 3, 3, 16])) / np.sqrt(27)
+W_conv1 = (weight_variable([3, 3, 3, 16], np.sqrt(27)))
 b_conv1 = bias_variable([16])
 
 h_conv1 = tf.nn.conv2d(x, W_conv1, strides=[1, 1, 1, 1], padding='SAME') + b_conv1
@@ -38,7 +43,7 @@ h_pool1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padd
 # let's flatten it.
 flattened_features = tf.reshape(h_pool1, [-1, (16*16*16)])
 
-W = (weight_variable([(16*16*16), 10])) / np.sqrt(16*16*16)
+W = (weight_variable([(16*16*16), 10], np.sqrt(16*16*16)))
 b = bias_variable([10])
 
 logits = tf.matmul(flattened_features, W) + b
