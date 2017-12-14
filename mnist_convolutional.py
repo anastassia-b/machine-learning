@@ -7,6 +7,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 # create variables for model
 x = tf.placeholder(tf.float32, [None, 784])
+x_image = tf.reshape(x, [-1, 28, 28, 1])
 y_ = tf.placeholder(tf.float32, shape=[None, 10])
 
 def weight_variable(shape):
@@ -28,7 +29,6 @@ def max_pool_2x2(x):
 
 W_conv1 = weight_variable([5, 5, 1, 32])
 b_conv1 = bias_variable([32])
-x_image = tf.reshape(x, [-1, 28, 28, 1])
 
 
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
