@@ -5,6 +5,7 @@ from keras.optimizers import Adam
 import keras.backend as K
 from utils import load_image
 import numpy as np
+from utils import save_image
 
 content_im_data = load_image('./images/tubingen1024.jpeg')
 
@@ -34,6 +35,13 @@ feature_tensors = [content_tensor, *style_tensors]
 training_model = Model(inputs=dummy_input_tensor, outputs=feature_tensors)
 training_model.summary()
 
+def save_int_image(epoch_idx, logs):
+    flattened_image_tensor = image_layer.get_weights()[0]
+    flattened_image_data = K.eval(flattened_image_tensor)
+    image_data = np.reshape(flattened_image_data, (768, 1024, 3))
+    save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
+
+
 optimizer = Adam(lr=0.001)
 training_model.compile(loss='mean_squared_error', optimizer=optimizer)
 training_model.fit(
@@ -41,7 +49,7 @@ training_model.fit(
     np.ones([1, 1]),
     target_values,
     batch_size=1,
-    epochs=1,
+    epochs=1000,
     verbose=2,
-    callbacks=None
+    callbacks=[LambdaCallback(on_epoch_end=save_int_image)]
 )
