@@ -43,8 +43,11 @@ def save_int_image(epoch_idx, logs):
     save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
 
 
-optimizer = Adam(lr=0.001)
-training_model.compile(loss='mean_squared_error', optimizer=optimizer)
+optimizer = Adam(lr=10.0) #changed to 10 from 0.001
+training_model.compile(
+    loss='mean_squared_error',
+    optimizer=optimizer,
+    loss_weights=[2.5, *([1]*5)])
 training_model.fit(
     #one example, one feature, the value is 1 since 1s function
     np.ones([1, 1]),
