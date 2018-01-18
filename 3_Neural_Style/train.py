@@ -8,13 +8,13 @@ from utils import load_image
 import numpy as np
 from utils import save_image
 
-content_im_data = load_image('./images/tubingen1024.jpeg')
+content_im_data = load_image('./images/content_milan.jpeg')
 
 print("Calculating content features")
 content_value, *_ = featurization_model.predict(np.expand_dims(content_im_data, axis=0))
 print(content_value.shape)
 
-style_im_data = load_image('./images/starry-night1024.jpeg')
+style_im_data = load_image('./images/style_monet2.jpeg')
 print("Calculating style matrices")
 
 _, *style_values = featurization_model.predict(np.expand_dims(style_im_data, axis=0))

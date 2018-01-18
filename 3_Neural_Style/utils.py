@@ -6,6 +6,8 @@ BGR_MEANS = np.array([103.939, 116.779, 123.68], dtype = np.float64)
 def load_image(path):
     im = Image.open(path)
     im_data = np.array(im)
+    if im_data.shape[2] == 4:
+        im_data = im_data[:, :, :3]
     red = np.copy(im_data[:, :, 0])
     blue = np.copy(im_data[:, :, 2])
     im_data[:, :, 0] = blue
