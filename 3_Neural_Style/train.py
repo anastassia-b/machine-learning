@@ -11,6 +11,7 @@ from utils import save_image
 content_im_data = load_image('./images/content_milan.jpeg')
 
 print("Calculating content features")
+#we only had 1 image to train, but we needed 2 dim, 1 * image dimensions
 content_value, *_ = featurization_model.predict(np.expand_dims(content_im_data, axis=0))
 print(content_value.shape)
 
@@ -30,6 +31,8 @@ image_layer = Dense((768 * 1024 * 3), activation='linear', use_bias=False)
 image_tensor = image_layer(dummy_input_tensor)
 reshaped_image = Reshape((768, 1024, 3))(image_tensor)
 
+# instead of the reshaped_image, we will feed in the output of the generator network.
+
 content_tensor, *style_tensors = featurization_model(reshaped_image)
 feature_tensors = [content_tensor, *style_tensors]
 
@@ -37,10 +40,11 @@ training_model = Model(inputs=dummy_input_tensor, outputs=feature_tensors)
 training_model.summary()
 
 def save_int_image(epoch_idx, logs):
-    flattened_image_data = image_layer.get_weights()[0]
-    # flattened_image_data = K.eval(flattened_image_tensor)
-    image_data = np.reshape(flattened_image_data, (768, 1024, 3))
-    save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
+    if epoch_idx % 100 == 99:
+        flattened_image_data = image_layer.get_weights()[0]
+        # flattened_image_data = K.eval(flattened_image_tensor)
+        image_data = np.reshape(flattened_image_data, (768, 1024, 3))
+        save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
 
 
 optimizer = Adam(lr=10.0) #changed to 10 from 0.001
@@ -53,7 +57,7 @@ training_model.fit(
     np.ones([1, 1]),
     target_values,
     batch_size=1,
-    epochs=1000,
+    epochs=3000,
     verbose=2,
     callbacks=[LambdaCallback(on_epoch_end=save_int_image)]
 )
