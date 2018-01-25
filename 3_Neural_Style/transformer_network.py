@@ -102,3 +102,5 @@ model.summary()
 
 #input for the loss model will be the output of the generator. in the model.py
 #get coco dataset.
+
+# generator = transformer used here interchangably.
