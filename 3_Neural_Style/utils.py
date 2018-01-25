@@ -16,6 +16,19 @@ def load_image(path):
     return centered_im
     # print(im_data.shape)
 
+def load_resized_image(path):
+    im = Image.open(path)
+    im = im.resize((256, 256))
+    im_data = np.array(im)
+    if im_data.shape[2] == 4:
+        im_data = im_data[:, :, :3]
+    red = np.copy(im_data[:, :, 0])
+    blue = np.copy(im_data[:, :, 2])
+    im_data[:, :, 0] = blue
+    im_data[:, :, 2] = red
+    centered_im = im_data - BGR_MEANS
+    return centered_im
+
 def save_image(path, im_data):
     im_data = im_data + BGR_MEANS
     #we want a copy instead of a view
