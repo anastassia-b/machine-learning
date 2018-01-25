@@ -4,7 +4,8 @@ from keras.layers import Lambda
 import keras.backend as K
 import numpy as np
 
-vgg_model = VGG16(include_top=False, input_shape=[768, 1024, 3], pooling='avg')
+# vgg_model = VGG16(include_top=False, input_shape=[768, 1024, 3], pooling='avg')
+vgg_model = VGG16(include_top=False, input_shape=[256, 256, 3], pooling='avg')
 
 for layer in vgg_model.layers:
     layer.trainable = False
