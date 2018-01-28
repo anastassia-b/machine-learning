@@ -12,13 +12,15 @@ file_names = os.listdir(jpg_dir)
 
 # reg ex to filter files that dont end in .jpg
 matched_files = []
-num_images = len(matched_files)
+
 
 pattern = re.compile('.*jpg$')
 
 for file_name in file_names:
     if pattern.match(file_name):
         matched_files.append(os.path.join(jpg_dir, file_name))
+
+num_images = len(matched_files)
 
 # training dataset passed to training function to keras
 # might be too large

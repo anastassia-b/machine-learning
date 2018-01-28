@@ -29,11 +29,11 @@ print(value_shapes)
 input_tensor = Input(shape=(256, 256, 3))
 #2. feed into transformer network
 output_image = transformer_model(input_tensor)
-#3. feed that into the loss network.
 
-#4. that gives us content and style outputs. that's end-to-end, now we train this.
+#3. feed that into the loss network.
 content_tensor, *style_tensors = featurization_model(output_image)
 feature_tensors = [content_tensor, *style_tensors]
+#4. that gives us content and style outputs. that's end-to-end, now we train this.
 
 training_model = Model(inputs=input_tensor, outputs=feature_tensors)
 training_model.summary()
@@ -58,7 +58,6 @@ training_model.fit_generator(
     #batch gen gives x and y values
     steps_per_epoch=num_batches,
     epochs=3000,
-    verbose=2,
     # callbacks=[LambdaCallback(on_epoch_end=save_int_image)]
 )
 
