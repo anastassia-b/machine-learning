@@ -46,6 +46,10 @@ def save_int_image(epoch_idx, logs):
         save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
 
 
+save_model = keras.callbacks.ModelCheckpoint(
+    'weights.{epoch:03d}-{loss:.2e}.hdf5',
+    monitor='loss'
+)
 
 optimizer = Adam(lr=0.001) #changed to 10 from 0.001
 training_model.compile(
@@ -57,9 +61,10 @@ training_model.fit_generator(
     #one example, one feature, the value is 1 since 1s function
     batch_generator(featurization_model, style_values),
     #batch gen gives x and y values
-    steps_per_epoch=num_batches,
-    epochs=3000,
+    steps_per_epoch=(num_batches // 32),
+    epochs=3000*32,
     # callbacks=[LambdaCallback(on_epoch_end=save_int_image)]
+    callbacks=[save_model]
 )
 
 
