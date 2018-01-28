@@ -20,8 +20,16 @@ def load_resized_image(path):
     im = Image.open(path)
     im = im.resize((256, 256))
     im_data = np.array(im)
+
+    #black and white image
+    if len(im_data.shape) == 2:
+        im_data = im_data[:, :, np.newaxis]
+        im_data = np.repeat(im_data, 3, axis=2)
+
     if im_data.shape[2] == 4:
         im_data = im_data[:, :, :3]
+
+    #image with alpha opacity channel
     red = np.copy(im_data[:, :, 0])
     blue = np.copy(im_data[:, :, 2])
     im_data[:, :, 0] = blue

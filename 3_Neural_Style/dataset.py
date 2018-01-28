@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 
 
-jpg_dir = "./images"
+jpg_dir = "/ebs/coco2017/jpgs"
 
 # list files and import them
 file_names = os.listdir(jpg_dir)

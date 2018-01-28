@@ -46,7 +46,8 @@ def save_int_image(epoch_idx, logs):
         save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
 
 
-optimizer = Adam(lr=10.0) #changed to 10 from 0.001
+
+optimizer = Adam(lr=0.001) #changed to 10 from 0.001
 training_model.compile(
     loss='mean_squared_error',
     optimizer=optimizer,
