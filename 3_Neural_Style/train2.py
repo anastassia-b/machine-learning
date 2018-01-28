@@ -2,7 +2,7 @@ from model import featurization_model
 from keras.models import Model
 from keras.layers import Input, Dense, Reshape
 from keras.optimizers import Adam
-from keras.callbacks import LambdaCallback
+from keras.callbacks import LambdaCallback, ModelCheckpoint
 import keras.backend as K
 from utils import load_image, load_resized_image
 import numpy as np
@@ -46,7 +46,7 @@ def save_int_image(epoch_idx, logs):
         save_image(f'./images/result{epoch_idx:04}.jpeg', image_data)
 
 
-save_model = keras.callbacks.ModelCheckpoint(
+save_model = ModelCheckpoint(
     'weights.{epoch:03d}-{loss:.2e}.hdf5',
     monitor='loss'
 )
