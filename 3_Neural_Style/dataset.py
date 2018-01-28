@@ -26,7 +26,7 @@ num_images = len(matched_files)
 # might be too large
 # so well run a generateor, give some files, then give more
 
-batch_size = 1
+batch_size = 4
 num_batches = num_images / batch_size
 
 def generator_of_file_batches():
@@ -48,9 +48,4 @@ def batch_generator(featurization_model, style_values):
             new_style_values = np.repeat(style_values, len(load_images), axis=0)
             #we need to run the network to calculate the contents
             content_value, *_ = featurization_model.predict(loaded_images)
-            # print(loaded_images.shape, content_value.shape, style_values[0].shape)
             yield (loaded_images, [content_value, *new_style_values])
-
-#TODO: if batch size is not 1, must replicate style values.
-for x in generator_of_loaded_images():
-    print(x.shape)
