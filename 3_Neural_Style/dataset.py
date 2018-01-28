@@ -45,7 +45,12 @@ def generator_of_loaded_images():
 def batch_generator(featurization_model, style_values):
     while True:
         for loaded_images in generator_of_loaded_images():
-            new_style_values = np.repeat(style_values, len(loaded_images), axis=0)
+            #instead of len(loaded_images), use shape
+            this_batch_size = loaded_images.shape[0]
+            new_style_values = [
+                np.repeat(style_value, this_batch_size, axis=0)
+                for style_value in style_values
+            ]
             #we need to run the network to calculate the contents
             content_value, *_ = featurization_model.predict(loaded_images)
             yield (loaded_images, [content_value, *new_style_values])
