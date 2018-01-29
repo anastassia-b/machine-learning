@@ -48,7 +48,3 @@ def save_image(path, im_data):
     im_data = im_data.astype(np.uint8)
     image = Image.fromarray(im_data)
     image.save(path)
-
-
-im_data = load_image('./images/tubingen1024.jpeg')
-save_image('./images/output_image.jpeg', im_data)
