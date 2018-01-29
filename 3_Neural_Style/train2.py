@@ -10,12 +10,15 @@ from utils import save_image
 from transformer_network import model as transformer_model
 from dataset import batch_generator, num_batches
 
-
 #removed content image, replacing with image batches
 
 style_im_data = load_resized_image('./images/style_monet2.jpeg')
 print("Calculating style matrices")
 
+#why np.expand_dims?
+#sylte_im_data is 256, 256, 3.
+#predict: if you give it 5 images, will process 5 at a time.
+#but since we're just working with 1 image, we need the first dimension in front.
 _, *style_values = featurization_model.predict(np.expand_dims(style_im_data, axis=0))
 value_shapes = [value.shape for value in style_values]
 print(value_shapes)
