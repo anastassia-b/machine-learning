@@ -18,4 +18,4 @@ Topics:
 
 ### Neural Network Implementations
 
-Initially, I will implement the above techniques with Keras and TensorFlow. The aim is to learn through a variety of projects, enough to be able to explore original ideas.
+Initially, I will implement the above techniques with Keras and TensorFlow. The aim is to learn through a variety of projects, to be able to explore original ideas.
